@@ -1,37 +1,111 @@
-.cards {
-    border: 2px solid grey !important;
-    border-radius: 2%;
-    width: 18rem;
-    opacity: 0.5;
-    /* box-shadow: 10px 10px 5px grey;
-    margin-bottom: 2rem; */
+.shippingPageContainer {
+  width: 80%;
+  margin-left: 10%;
 }
 
-.smallCol {
-    display: flex;
-	flex-direction: column;
-	flex-wrap: nowrap;
-	justify-content: center;
-	align-items: center;
-	align-content: stretch;
-    margin: 40px;
-    padding-top: 1px;
-    cursor: pointer;
-}
-.bigCol{
-    display: flex;
-	flex-direction: row;
-	flex-wrap: nowrap;
-	justify-content: center;
-	align-items: center;
-	align-content: stretch;
+.headerRow > h3 {
+  color: red;
 }
 
+.options {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 5%;
+}
 
+.textCard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 5% 0;
+}
 
-/* .icon {
-    content: '';
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 16 16' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7.333 7.333v-4h1.334v4h4v1.334h-4v4H7.333v-4h-4V7.333h4Z'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-size: 1rem 1rem;
-  } */
+.textCardBody {
+  border: 2px solid #d6d6d6 !important;
+  background-color: #d6d6d6;
+  border-radius: 5px;
+  width: max-content;
+  opacity: 0.5;
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5%;
+}
+
+.warningText {
+  margin-left: 10px;
+}
+
+.deliveryOptions {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: flex-end;
+  margin-top: 5%;
+}
+
+.deliveryOption {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.deliveryOptionHeader,
+.deliveryOptionDate {
+  display: flex;
+  flex-direction: column;
+}
+
+.deliveryOptionHeader {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10%;
+}
+
+.deliveryOptionDate {
+  border: 2px solid black;
+  width: 70px;
+  height: 70px;
+  display: flex;
+  text-align: center;
+}
+
+.deliveryOptionDateChristmas {
+  border: 2px solid red;
+  width: 70px;
+  height: 70px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  color: red;
+}
+
+.deliveryOptionHeaderChristmas {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 10%;
+}
+
+.deliveryOptionHeaderChristmas > svg {
+  color: red;
+}
+
+.deliveryOptionDateFirstSpan {
+  font-size: xx-large;
+  font-weight: bold;
+}
+
+.option {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.selectedOption {
+  border-bottom: 2px solid red;
+}
