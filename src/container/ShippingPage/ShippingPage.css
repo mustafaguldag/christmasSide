@@ -45,59 +45,6 @@
   margin-top: 5%;
 }
 
-.deliveryOption {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-}
-
-.deliveryOptionHeader,
-.deliveryOptionDate {
-  display: flex;
-  flex-direction: column;
-}
-
-.deliveryOptionHeader {
-  display: flex;
-  align-items: center;
-  margin-bottom: 10%;
-}
-
-.deliveryOptionDate {
-  border: 2px solid black;
-  width: 70px;
-  height: 70px;
-  display: flex;
-  text-align: center;
-}
-
-.deliveryOptionDateChristmas {
-  border: 2px solid red;
-  width: 70px;
-  height: 70px;
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  color: red;
-}
-
-.deliveryOptionHeaderChristmas {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 10%;
-}
-
-.deliveryOptionHeaderChristmas > svg {
-  color: red;
-}
-
-.deliveryOptionDateFirstSpan {
-  font-size: xx-large;
-  font-weight: bold;
-}
-
 .option {
   width: 100%;
   display: flex;
@@ -110,4 +57,9 @@
 
 .selectedOption {
   border-bottom: 2px solid red;
+}
+.dropdown {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
