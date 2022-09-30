@@ -3,23 +3,90 @@ import "@vtmn/icons/dist/vitamix/font/vitamix.css";
 import { VtmnIcon } from "@vtmn/react";
 import { FaBoxOpen } from "react-icons/fa";
 import { GiWorld } from "react-icons/gi";
-import { HiShoppingCart } from "react-icons/hi";
+import { GiFox } from "react-icons/gi";
 import "./ShippingPage.css";
-//import products from "../../products.json";
 import DeliveryResultCard from "../../component/DeliveryResultCard/DeliveryResultCard";
 
-export default function ShippingPage() {
-  
-  const [selectedOption, setSelectedOption] = useState(0);
+const DELIVERY_TYPES = [
+  {
+    icon: FaBoxOpen,
+    iconSize: 24,
+    packageSizeName: "MPL (kisméretű csomagok + kerók)",
+    deliveryDate: "10/19",
+    packageSize: "small",
+    courier: "MPL",
+    option: 0,
+  },
+  {
+    icon: FaBoxOpen,
+    iconSize: 30,
+    packageSizeName: "DPD (közepes méretű csomagok)",
+    deliveryDate: "10/19",
+    packageSize: "medium",
+    courier: "DPD",
+    option: 0,
+  },
+  {
+    icon: FaBoxOpen,
+    iconSize: 36,
+    packageSizeName: "Royal (nagyméretű csomagok)",
+    deliveryDate: "7/16",
+    packageSize: "big",
+    courier: "Royal",
+    option: 0,
+  },
+  {
+    icon: GiFox,
+    iconSize: 36,
+    packageSizeName: "FoxPost Pup",
+    deliveryDate: "11/20",
+    packageSize: "unknown",
+    courier: "Foxpost",
+    option: 0,
+  },
+  {
+    icon: GiWorld,
+    iconSize: 36,
+    packageSizeName: "Hagyományos áruházi átvétel",
+    deliveryDate: "13/21",
+    packageSize: "unknown",
+    courier: "unknownCourier",
+    option: 1,
+  },
+  {
+    icon: GiWorld,
+    iconSize: 36,
+    packageSizeName: "1 órás áruházi átvétel",
+    deliveryDate: "24",
+    packageSize: "unknown",
+    courier: "unknownCourier",
+    option: 2,
+  },
+  {
+    icon: GiWorld,
+    iconSize: 36,
+    packageSizeName: "Aznapi kiszállítás (Budapest only)",
+    deliveryDate: "23",
+    packageSize: "unknown",
+    courier: "unknownCourier",
+    option: 3,
+  },
+  {
+    icon: GiWorld,
+    iconSize: 36,
+    packageSizeName: "1 munkanapos kiszállítás",
+    deliveryDate: "20",
+    packageSize: "unknown",
+    courier: "unknownCourier",
+    option: 4,
+  },
+];
 
-  const [deliveryDays, setDeliveryDays] = useState({
-    royalCard: "7/16",
-    mplCard: "10/19",
-    dpdCard: "10/19",
-    foxCard: "11/20",
-    generalStoreCard: "13/21",
-    otherCard: "24",
-  });
+export default function ShippingPage() {
+
+  const [selectedOption, setSelectedOption] = useState(0);
+  const [selectedPackageSize, setSelectedPackageSize] = useState("unknown");
+  const [selectedCourier, setSelectedCourier] = useState("unknownCourier");
 
   const handleOption = (id) => {
     // I used Number because our state is number not a string.
@@ -27,7 +94,11 @@ export default function ShippingPage() {
   };
 
   const handlePackageSize = (packageSizeName) => {
-    console.log("packageSizeName: ", packageSizeName);
+    setSelectedPackageSize(packageSizeName);
+  };
+
+  const handleCourier = (courier) => {
+    setSelectedCourier(courier);
   };
 
   const months = [
@@ -87,108 +158,22 @@ export default function ShippingPage() {
   //   return christmasDate.getDate() - finalShippingAmount;
   // };
 
-  const firstDeliveryMethod = () => {
-    setDeliveryDays({
-      ...deliveryDays,
-      royalCard: "7/16",
-      mplCard: "10/19",
-      dpdCard: "10/19",
-      foxCard: "11/20",
-    });
+  const filterByOption = (deliveryType) =>
+    deliveryType.option === selectedOption;
+
+  const filterByPackageSize = (deliveryType) => {
+    if (selectedPackageSize === "unknown") {
+      return deliveryType;
+    } else {
+      return deliveryType.packageSize === selectedPackageSize;
+    }
   };
 
-  const secDeliveryMethod = () => {
-    setDeliveryDays({
-      ...deliveryDays,
-      generalStoreCard: "13/21",
-    });
-  };
-
-  const thirdDeliveryMethod = () => {
-    setDeliveryDays({
-      ...deliveryDays,
-      otherCard: "24",
-    });
-  };
-
-  const fourthDeliveryMethod = () => {
-    setDeliveryDays({ ...deliveryDays, otherCard: "23" });
-  };
-
-  const fifthDeliveryMethod = () => {
-    setDeliveryDays({ ...deliveryDays, otherCard: "20" });
-  };
-
-  const deliveryCards = () => {
-    switch (selectedOption) {
-      case 0:
-        return (
-          <>
-            <DeliveryResultCard
-              Icon={FaBoxOpen}
-              iconSize={24}
-              packageSizeName="MPL (kisméretű csomagok + kerók)"
-              deliveryDate={deliveryDays?.mplCard}
-            />
-
-            <DeliveryResultCard
-              Icon={FaBoxOpen}
-              iconSize={30}
-              packageSizeName="DPD (közepes méretű csomagok)"
-              deliveryDate={deliveryDays?.dpdCard}
-            />
-
-            <DeliveryResultCard
-              Icon={FaBoxOpen}
-              iconSize={36}
-              packageSizeName="Royal (nagyméretű csomagok)"
-              deliveryDate={deliveryDays?.royalCard}
-            />
-
-            <DeliveryResultCard
-              Icon={FaBoxOpen}
-              iconSize={36}
-              packageSizeName="FoxPost Pup"
-              deliveryDate={deliveryDays?.foxCard}
-            />
-          </>
-        );
-      case 1:
-        return (
-          <DeliveryResultCard
-            Icon={GiWorld}
-            iconSize={36}
-            packageSizeName="Hagyományos áruházi átvétel"
-            deliveryDate={deliveryDays?.generalStoreCard}
-          />
-        );
-      case 2:
-        return (
-          <DeliveryResultCard
-            Icon={GiWorld}
-            iconSize={36}
-            packageSizeName="1 órás áruházi átvétel"
-            deliveryDate={deliveryDays?.otherCard}
-          />
-        );
-      case 3:
-        return (
-          <DeliveryResultCard
-            Icon={GiWorld}
-            iconSize={36}
-            packageSizeName="Aznapi kiszállítás (Budapest only)"
-            deliveryDate={deliveryDays?.otherCard}
-          />
-        );
-      case 4:
-        return (
-          <DeliveryResultCard
-            Icon={GiWorld}
-            iconSize={36}
-            packageSizeName="1 munkanapos kiszállítás"
-            deliveryDate={deliveryDays?.otherCard}
-          />
-        );
+  const filterByCourier = (deliveryType) => {
+    if (selectedCourier === "unknownCourier") {
+      return deliveryType;
+    } else {
+      return deliveryType.courier === selectedCourier;
     }
   };
 
@@ -216,39 +201,30 @@ export default function ShippingPage() {
         </div>
         <div>
           <select onChange={(e) => handlePackageSize(e.target.value)}>
-            <option value="empty">---</option>
+            <option value="unknown">---</option>
             <option value="small">Small</option>
             <option value="medium">Medium</option>
             <option value="big">Big</option>
           </select>
         </div>
         <div>
-          <select>
-            <option value="meat">---</option>
-            <option value="vegetable">MPL</option>
-            <option value="meat">DPD</option>
-            <option value="fruit">Royal</option>
-            <option value="meat">Foxpost</option>
+          <select onChange={(e) => handleCourier(e.target.value)}>
+            <option value="unknownCourier">---</option>
+            <option value="MPL">MPL</option>
+            <option value="DPD">DPD</option>
+            <option value="Royal">Royal</option>
+            <option value="Foxpost">Foxpost</option>
           </select>
         </div>
       </div>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          paddingTop: "4rem",
-        }}
-      >
+      <div className="currentDate">
         <span>{currentDate.getDate()}</span>/<span>{month.toUpperCase()}</span>/
         <span>{currentDate.getFullYear()}</span>
       </div>
       <div className="options">
         <div
           className={`option ${selectedOption === 0 ? "selectedOption" : ""}`}
-          onClick={() => {
-            handleOption(0);
-            firstDeliveryMethod();
-          }}
+          onClick={() => handleOption(0)}
         >
           <VtmnIcon size={24} value="truck-line" variant="default" />
           <span>Házhozszállítás</span>
@@ -256,10 +232,7 @@ export default function ShippingPage() {
 
         <div
           className={`option ${selectedOption === 1 ? "selectedOption" : ""}`}
-          onClick={() => {
-            handleOption(1);
-            secDeliveryMethod();
-          }}
+          onClick={() => handleOption(1)}
         >
           <VtmnIcon size={24} value="store-line" variant="default" />
           <span>Hagyományos áruházi átvétel</span>
@@ -267,10 +240,7 @@ export default function ShippingPage() {
 
         <div
           className={`option ${selectedOption === 2 ? "selectedOption" : ""}`}
-          onClick={() => {
-            handleOption(2);
-            thirdDeliveryMethod();
-          }}
+          onClick={() => handleOption(2)}
         >
           <VtmnIcon size={24} value="flashlight-line" variant="default" />
           <span>1 órás áruházi átvétel</span>
@@ -278,10 +248,7 @@ export default function ShippingPage() {
 
         <div
           className={`option ${selectedOption === 3 ? "selectedOption" : ""}`}
-          onClick={() => {
-            handleOption(3);
-            fourthDeliveryMethod();
-          }}
+          onClick={() => handleOption(3)}
         >
           <VtmnIcon size={24} value="truck-fill" variant="default" />
           <span>Aznapi kisátílás</span>
@@ -289,10 +256,7 @@ export default function ShippingPage() {
 
         <div
           className={`option ${selectedOption === 4 ? "selectedOption" : ""}`}
-          onClick={() => {
-            handleOption(4);
-            fifthDeliveryMethod();
-          }}
+          onClick={() => handleOption(4)}
         >
           <VtmnIcon size={24} value="store-fill" variant="default" />
           <span>1 munkanapos kisátílás</span>
@@ -307,8 +271,20 @@ export default function ShippingPage() {
           </span>
         </div>
       </div>
-
-      <div className="deliveryOptions">{deliveryCards()}</div>
+      <div className="deliveryOptions">
+        {DELIVERY_TYPES.filter(filterByOption)
+          .filter(filterByPackageSize)
+          .filter(filterByCourier)
+          .map((deliveryType, i) => (
+            <DeliveryResultCard
+              Icon={deliveryType.icon}
+              iconSize={deliveryType.iconSize}
+              packageSizeName={deliveryType.packageSizeName}
+              deliveryDate={deliveryType.deliveryDate}
+              key={i}
+            />
+          ))}
+      </div>
     </div>
   );
 }

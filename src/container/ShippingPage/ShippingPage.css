@@ -50,16 +50,55 @@
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
-  justify-content: center;
+  justify-content: baseline;
   align-items: center;
   cursor: pointer;
+}
+
+.option > span {
+  text-align: center;
 }
 
 .selectedOption {
   border-bottom: 2px solid red;
 }
+
 .dropdown {
   display: flex;
   align-items: center;
   flex-direction: column;
+}
+
+.currentDate {
+  margin: 30px 0;
+  text-align: center;
+}
+
+@media screen and (max-width: 720px) {
+  .headerRow > h3 {
+    text-align: center;
+  }
+
+  .options {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+  }
+
+  .option {
+    margin: 5px 0;
+  }
+
+  .selectedOption {
+    border: none;
+    background-color: #7fa8ff;
+    border-radius: 12px;
+    padding: 3%;
+    width: 250px;
+  }
+
+  .deliveryOptions {
+    align-items: center;
+    flex-direction: column;
+  }
 }

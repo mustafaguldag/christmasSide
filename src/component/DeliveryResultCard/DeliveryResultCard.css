@@ -1,37 +1,51 @@
 .deliveryOption {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.deliveryOptionHeader,
+.deliveryOptionDate {
+  display: flex;
+  flex-direction: column;
+}
+
+.deliveryOptionDateChristmas {
+  border: 2px solid red;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  color: red;
+}
+
+.deliveryOptionHeaderChristmas {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 10%;
+}
+
+.deliveryOptionHeaderChristmas > svg {
+  color: red;
+}
+
+.deliveryOptionDateFirstSpan {
+  font-size: xx-large;
+  font-weight: bold;
+}
+
+@media screen and (max-width: 720px) {
+  .deliveryOption {
+    margin: 15px 0;
+    background-color: #b9b9b949;
+    border-radius: 12px;
+    width: 283px;
+    height: 208px;
   }
-  
-  .deliveryOptionHeader,
-  .deliveryOptionDate {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .deliveryOptionDateChristmas {
-    border: 2px solid red;
-    width: 100px;
-    height: 100px;
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    color: red;
-  }
-  
+
   .deliveryOptionHeaderChristmas {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 10%;
+    margin-top: 15px;
   }
-  
-  .deliveryOptionHeaderChristmas > svg {
-    color: red;
-  }
-  
-  .deliveryOptionDateFirstSpan {
-    font-size: xx-large;
-    font-weight: bold;
-  }
+}
